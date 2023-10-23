@@ -1,0 +1,11 @@
+region1::group
+private_r1::group
+storage_r1::group
+amplify_r1::amplify
+cognito::cognito
+dynamodb_r1::dynamodb
+s3_r1::s3standard
+processor_lambda_r1::lambda
+user::user
+
+region1 => []

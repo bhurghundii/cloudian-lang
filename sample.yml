@@ -1,0 +1,68 @@
+## region1 contains [ dynamodb_r1, lambda_r1 ]
+## lambda_r1 goes to [ dynamodb_r1 ]
+## dynamodb_r1 goes to [ private_r1, amplify_r1 ]
+
+region1:
+  contain: [ private_r1, amplify_r1 ]
+  type: "subnet"
+
+private_r1:
+  contain: [processor_lambda_r1, storage_r1]
+  type: "subnet"
+
+storage_r1:
+  contain: [dynamodb_r1, s3_r1]
+  type: "subnet"
+
+amplify_r1:
+  goes_to: [user]
+  type: "amplify"
+
+cognito:
+  goes_to: [amplify_r1, amplify_r2]
+  type: "cognito"
+
+dynamodb_r1:
+  goes_to: [processor_lambda_r1]
+  type: "dynamodb"
+
+s3_r1:
+  goes_to: [processor_lambda_r1]
+  type: "s3standard"
+
+processor_lambda_r1:
+  goes_to: [dynamodb_r1, amplify_r1, s3_r1]
+  type: "lambda"
+
+user:
+  goes_to: []
+  type: "user"
+
+
+region2:
+  contain: [ private_r2, amplify_r2, cognito ]
+  type: "subnet"
+
+private_r2:
+  contain: [processor_lambda_r2, storage_r2]
+  type: "subnet"
+
+storage_r2:
+  contain: [dynamodb_r2, s3_r2]
+  type: "subnet"
+
+amplify_r2:
+  goes_to: [user]
+  type: "amplify"
+
+dynamodb_r2:
+  goes_to: [processor_lambda_r2]
+  type: "dynamodb"
+
+s3_r2:
+  goes_to: [processor_lambda_r2]
+  type: "s3standard"
+
+processor_lambda_r2:
+  goes_to: [dynamodb_r2, amplify_r2, s3_r2]
+  type: "lambda"
