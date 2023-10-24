@@ -1,19 +1,13 @@
-region1::subnet
-storage::subnet
-private::subnet
+region1::subnet => [amplify, cognito, storage]
+storage::subnet => [dynamodb, s3, lambda]
 
+# resources
 dynamodb::dynamodb
-s3::s3standard
-lambda::lambda
-amplify::amplify
 cognito::cognito
-user::user
-
-# groupings
-region1 => [amplify, cognito, storage]
-storage => [dynamodb, s3, lambda]
+user2::user
 
 # resource connections
-user => [amplify]
-amplify => [cognito, lambda]
-lambda => [dynamodb, s3]
+user::user => [amplify]
+s3::s3standard => [user2, user]
+amplify::amplify => [cognito, lambda]
+lambda::lambda => [dynamodb, s3]

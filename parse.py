@@ -28,6 +28,10 @@ def cldn_to_yaml(lines):
     for line in lines:
         if "#" in line:
             continue
+        elif '=>' in line and '::' in line:
+            yaml[line.split('::')[0].strip()] = {"type": line.split('::')[1].split("=>")[0].strip(), "contain": []}
+            yaml[line.split('::')[0].strip()]["contain"] = [x.strip() for x in line.split('=>')[1].strip()[1:-1].split(',')]
+
         elif '::' in line:
             yaml[line.split('::')[0].strip()] = {"type": line.split('::')[1].strip(), "contain": []}
 
