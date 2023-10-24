@@ -1,0 +1,39 @@
+region1:
+  type: subnet
+  contain:
+  - amplify
+  - cognito
+  - storage
+storage:
+  type: subnet
+  contain:
+  - dynamodb
+  - s3
+  - private
+private:
+  type: subnet
+  contain:
+  - lambda
+dynamodb:
+  type: dynamodb
+  contain: []
+s3:
+  type: s3standard
+  contain: []
+lambda:
+  type: lambda
+  contain:
+  - dynamodb
+  - s3
+amplify:
+  type: amplify
+  contain:
+  - cognito
+  - lambda
+cognito:
+  type: cognito
+  contain: []
+user:
+  type: user
+  contain:
+  - amplify

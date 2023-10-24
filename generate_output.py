@@ -20,8 +20,8 @@ def generate_output(data):
     # add edges
     for obj in list(data.items()):
         if obj[1]['type'] != "subnet":
-            for input in obj[1]['goes_to']:
-                g.edge(input, obj[0])
+            for input in obj[1]['contain']:
+                g.edge(obj[0], input)
 
     # render graph
     g.render('output.gv', view=True)
