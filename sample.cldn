@@ -1,4 +1,4 @@
-region1::subnet => [amplify, cognito, storage]
+region1::subnet => [amplify, storage]
 storage::subnet => [dynamodb, s3, lambda]
 
 # resources
