@@ -11,6 +11,9 @@ As someone who has a shoulder injury, I find using a mouse hard and painful.
 
 I was not able to find a simple text-based solution so I rolled my own. 
 
+## Running 
+Create a Cloudian file (*.cldn) and then run: ```python cloudian.py <your cloudian file here>```
+You will get a generated graph as output.gv.png
 
 ## Syntax 
 
